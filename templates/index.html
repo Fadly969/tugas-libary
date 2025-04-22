@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analisis Produk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Analisis Statistik Produk</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Kolom</th>
+                <th>Rata-rata</th>
+                <th>Median</th>
+                <th>Standar Deviasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for col, stat in stats.items() %}
+            <tr>
+                <td>{{ col }}</td>
+                <td>{{ stat.mean }}</td>
+                <td>{{ stat.median }}</td>
+                <td>{{ stat.std_dev }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>20 Baris Data Pertama</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for col in columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table %}
+            <tr>
+                {% for col in columns %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
